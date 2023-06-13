@@ -1,3 +1,12 @@
 <div class="main-container">
-  <div class="display-area"></div>
+  <div class="display-area">
+    <table mat-table [dataSource]="dataSource" class="mat-table">
+      <ng-container *ngFor="let data of activeColumns" [matColumnDef]="data">
+        <th mat-header-cell *matHeaderCellDef>{{ data }}</th>
+        <td mat-cell *matCellDef="let element">{{ element[data] }}</td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="activeColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: activeColumns"></tr>
+    </table>
+  </div>
 </div>
