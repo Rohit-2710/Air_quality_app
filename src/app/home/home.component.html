@@ -1,0 +1,56 @@
+<div class="main-container">
+  <mat-toolbar class="toolbar-container">
+    <mat-toolbar-row class="toolbar"
+      ><span class="header span">Toolbar row header</span>
+      <ul class="header list">
+        <li><button class="header buttons">Menu</button></li>
+        <li><button class="header buttons">Contact</button></li>
+      </ul></mat-toolbar-row
+    >
+  </mat-toolbar>
+  <div class="middle-container">
+    <mat-sidenav-container class="sidenav container">
+      <mat-sidenav #sidenav class="sidenav">
+        <div class="sidenav list">
+          <mat-list-item
+            #listItem
+            class="list-item"
+            *ngFor="let data of countries"
+            (click)="getData(data)"
+          >
+            <span>{{ data?.CountryName }}</span>
+          </mat-list-item>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content class="sidenav content">
+        <div *ngIf="country && capital">
+          <ng-container *ngTemplateOutlet="countryDisplay"></ng-container>
+        </div>
+        <div>
+          <p>Click here to select country to check for weather</p>
+        </div>
+        <button class="toggle-btn" (click)="sidenav.toggle()">
+          Open Countries
+        </button>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+    <app-display
+      class="display"
+      [data]="currentData"
+      (sideNavClose)="sideNavState($event)"
+    ></app-display>
+    <app-list></app-list>
+  </div>
+</div>
+<ng-template class="ng-template" #countryDisplay>
+  <div class="country-data-display">
+    <div class="country-align">
+      <label for="country" class="label"><strong>Country Name</strong></label>
+      <p id="country">{{ country }}</p>
+    </div>
+    <div class="country-align">
+      <label for="capital" class="label"><strong>Capital</strong></label>
+      <p id="capital">{{ capital }}</p>
+    </div>
+  </div>
+</ng-template>

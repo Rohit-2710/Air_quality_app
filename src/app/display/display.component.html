@@ -1,0 +1,45 @@
+<div class="main-container" (click)="externalClicked()">
+  <div class="control-btns-container">
+    <div class="control-btns">
+      <button
+        class="btn history"
+        id="history"
+        (click)="
+          getData({
+            url: 'https://air-quality.p.rapidapi.com/history/airquality',
+            type: 'history'
+          })
+        "
+      >
+        History
+      </button>
+      <button
+        class="btn current"
+        id="current"
+        (click)="
+          getData({
+            url: 'https://air-quality.p.rapidapi.com/current/airquality',
+            type: 'current'
+          })
+        "
+      >
+        Current
+      </button>
+      <button
+        class="btn future"
+        id="future"
+        (click)="
+          getData({
+            url: 'https://air-quality.p.rapidapi.com/forecast/airquality',
+            type: 'forecast'
+          })
+        "
+      >
+        Forecast
+      </button>
+    </div>
+  </div>
+  <div class="display-data">
+    <div class="info-container"></div>
+  </div>
+</div>
